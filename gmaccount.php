@@ -3,18 +3,7 @@
 $pagetitle = 'Account';
 
 require 'common.php';
-require ".htsln/geoip.inc";
-require ".htsln/geoipcity.inc";
-require ".htsln/geoipregionvars.php";
-$geoip_filename = '.htsln/GeoIP.dat';
-$geoipcity_filename = '.htsln/GeoLiteCity.dat';
-$geoip = geoip_open($geoip_filename, GEOIP_STANDARD);
-$geocity = geoip_open($geoipcity_filename, GEOIP_STANDARD);
-function getcc($ip)
-{
-	global $geoip;
-	return geoip_country_code_by_addr($geoip, $ip);
-}
+
 
 if (!$logged)
 {
@@ -48,102 +37,16 @@ $account = $account[0];
 
 $ip1 = $account['regip'];
 $ip2 = $account['lastip'];
-$location1 = GeoIP_record_by_addr($geocity, $ip1);
-$location2 = GeoIP_record_by_addr($geocity, $ip2);
-
+$account['computer_str'] = $account['computer'];
 $account['hdid_str'] = sprintf("%08x", (double)$account['hdid']);
 $account['hdid_str'] = strtoupper(substr($account['hdid_str'],0,4).'-'.substr($account['hdid_str'],4,4));
 $account['created_str'] = date('r', $account['created']);
 $account['lastused_str'] = date('r', $account['lastused']);
-$account['code1'] = geoip_country_code_by_addr($geoip, $ip1);
-$account['code2'] = geoip_country_code_by_addr($geoip, $ip2);
-$account['country1'] = geoip_country_name_by_addr($geoip, $ip1);
-$account['country2'] = geoip_country_name_by_addr($geoip, $ip2);
 $account['city1'] = '';
 $account['region1'] = '';
 $account['city2'] = '';
 $account['region2'] = '';
-if ($location1)
-{
-	if(($account['code1'] == 'US') or ($account['code1'] == 'CA'))
-	{
-		$account['region1'] = $location1->region.' ';
-	}
-	if ($account['region1'] == ' ')
-	{
-		$account['region1'] = '';
-	}
-	if ($location1->city)
-	{
-		$account['city1'] = $location1->city.', ';
-	}
-	if ($account['city1'] == ', ')
-	{
-		$account['city1'] = '';
-	}
-}
 
-if ($location2)
-{
-	if(($account['code2'] == 'US') or ($account['code2'] == 'CA'))
-	{
-		$account['region2'] = $location2->region.' ';
-	}
-	if ($account['region2'] == ' ')
-	{
-		$account['region2'] = '';
-	}
-	if ($location2->city)
-	{
-		$account['city2'] = $location2->city.', ';
-	}
-	if ($account['city2'] == ', ')
-	{
-		$account['city2'] = '';
-	}
-}
-if (($ip1 == '127.0.0.1') or ((long2ip(ip2long($ip1) & 0xFFFF0000)) == '192.168.0.0'))
-{
-	$account['code1'] = 'edge';
-	$account['country1'] = 'Endless Edge';
-	$account['region1'] = '';
-	$account['city1'] = '';
-}
-if (($ip2 == '127.0.0.1') or ((long2ip(ip2long($ip2) & 0xFFFF0000)) == '192.168.0.0'))
-{
-	$account['code2'] = 'edge';
-	$account['country2'] = 'Endless Edge';
-	$account['region2'] = '';
-	$account['city2'] = '';	
-}
-
-if (($account['code1'] == 'A1') or ($account['code1'] == 'A2'))
-{
-	$account['code1'] = 'unknown';
-	$account['region1'] = '';
-	$account['city1'] = '';	
-}
-
-if (!$account['code1']) 
-{
-	$account['code1'] = 'unknown'; 
-	$account['region1'] = '';
-	$account['city1'] = '';
-}
-
-if (($account['code2'] == 'A1') or ($account['code2'] == 'A2'))
-{
-	$account['code2'] = 'unknown';
-	$account['region2'] = '';
-	$account['city2'] = '';		
-}
-
-if (!$account['code2']) 
-{
-	$account['code2'] = 'unknown'; 
-	$account['region2'] = '';
-	$account['city2'] = '';		
-}
 $lastlogin = time() - $account['lastused'];
 function timesince($lastlogin)
 {
