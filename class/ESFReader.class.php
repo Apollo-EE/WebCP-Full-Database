@@ -13,16 +13,30 @@ class ESF_Data
 	var $sp;
 	
 	var $cast_time;
-	
+	var $nature;
+	var $active;
 	var $type;
 	var $element;
 	var $target_restrict;
 	var $target;
-	
+	var $target_time;
+	var $reserved;
+	var $maxlevel;
 	var $mindam;
 	var $maxdam;
 	var $accuracy;
+	var $evade;
+	var $armor;
+	var $return_damage;
 	var $hp;
+	var $tp_recover;
+	var $sp_recover;
+	var $str;
+	var $intl;
+	var $wis;
+	var $agi;
+	var $con;
+	var $cha;
 }
 
 class ESFReader
@@ -57,7 +71,8 @@ class ESFReader
 			$newdata->tp = Number(ord(substr($filedata, $fi, 1)), ord(substr($filedata, $fi+1, 1))); $fi += 2;
 			$newdata->sp = Number(ord(substr($filedata, $fi, 1)), ord(substr($filedata, $fi+1, 1))); $fi += 2;
 			$newdata->cast_time = Number(ord(substr($filedata, $fi, 1))); $fi += 1;
-			$fi += 2;
+			$newdata->nature = Number(ord(substr($filedata, $fi, 1))); $fi += 1;
+			$newdata->active = Number(ord(substr($filedata, $fi, 1))); $fi += 1;
 			$newdata->type = Number(ord(substr($filedata, $fi, 1))); $fi += 3;
 			$element = array('None', 'Light', 'Dark', 'Earth', 'Wind', 'Water', 'Fire');
 			$element_number = Number(ord(substr($filedata, $fi, 1))); $fi += 1;
@@ -65,13 +80,24 @@ class ESFReader
 			$newdata->element_power = Number(ord(substr($filedata, $fi, 1)), ord(substr($filedata, $fi+1, 1))); $fi += 2;
 			$newdata->target_restrict = Number(ord(substr($filedata, $fi, 1))); $fi += 1;
 			$newdata->target = Number(ord(substr($filedata, $fi, 1))); $fi += 1;
-			$fi += 4;
+			$newdata->target_time = Number(ord(substr($filedata, $fi, 1))); $fi += 1;
+			$newdata->reserved = Number(ord(substr($filedata, $fi, 1))); $fi += 1;
+			$newdata->maxlevel = Number(ord(substr($filedata, $fi, 1)), ord(substr($filedata, $fi+1, 1))); $fi += 2;
 			$newdata->mindam = Number(ord(substr($filedata, $fi, 1)), ord(substr($filedata, $fi+1, 1))); $fi += 2;
 			$newdata->maxdam = Number(ord(substr($filedata, $fi, 1)), ord(substr($filedata, $fi+1, 1))); $fi += 2;
 			$newdata->accuracy = Number(ord(substr($filedata, $fi, 1)), ord(substr($filedata, $fi+1, 1))); $fi += 2;
-			$fi += 5;
+			$newdata->evade = Number(ord(substr($filedata, $fi, 1)), ord(substr($filedata, $fi+1, 1))); $fi += 2;
+			$newdata->armor = Number(ord(substr($filedata, $fi, 1)), ord(substr($filedata, $fi+1, 1))); $fi += 2;
+			$newdata->return_damage = Number(ord(substr($filedata, $fi, 1))); $fi += 1;
 			$newdata->hp = Number(ord(substr($filedata, $fi, 1)), ord(substr($filedata, $fi+1, 1))); $fi += 2;
-			$fi += 15;
+			$newdata->tp_recover = Number(ord(substr($filedata, $fi, 1)), ord(substr($filedata, $fi+1, 1))); $fi += 2;
+			$newdata->sp_recover = Number(ord(substr($filedata, $fi, 1))); $fi += 1;
+			$newdata->str = Number(ord(substr($filedata, $fi, 1)), ord(substr($filedata, $fi+1, 1))); $fi += 2;
+			$newdata->intl = Number(ord(substr($filedata, $fi, 1)), ord(substr($filedata, $fi+1, 1))); $fi += 2;
+			$newdata->wis = Number(ord(substr($filedata, $fi, 1)), ord(substr($filedata, $fi+1, 1))); $fi += 2;
+			$newdata->agi = Number(ord(substr($filedata, $fi, 1)), ord(substr($filedata, $fi+1, 1))); $fi += 2;
+			$newdata->con = Number(ord(substr($filedata, $fi, 1)), ord(substr($filedata, $fi+1, 1))); $fi += 2;
+			$newdata->cha = Number(ord(substr($filedata, $fi, 1)), ord(substr($filedata, $fi+1, 1))); $fi += 2;
 
 			array_push($this->data, $newdata);
 		}

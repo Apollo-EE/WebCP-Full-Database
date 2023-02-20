@@ -999,7 +999,7 @@ global $eoserv_quests;
 		$quest = array(
 			'id' => (int)$xquest[0],
 			'name' => $eoserv_quests->Get($xquest[0])->name,
-			'state' => ($xquest[1] == 'end') ? 'Finished' : 'Active'
+			'state' => ($xquest[1] == 'end') ? 'Quest Complete' : 'Active State: '.$xquest[1]
 		);
 	}
 	unset($quest);

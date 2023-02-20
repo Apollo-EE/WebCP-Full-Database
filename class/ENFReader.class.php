@@ -76,9 +76,7 @@ class ENFReader
 			$newdata->element_weak = $element[$elem_weak];
 			$newdata->element_weak_power = Number(ord(substr($filedata, $fi, 1)), ord(substr($filedata, $fi+1, 1))); $fi += 2;
 			$newdata->level = Number(ord(substr($filedata, $fi, 1))); $fi += 1;
-
-			$newdata->exp = Number(ord(substr($filedata, $fi, 1)), ord(substr($filedata, $fi+1, 1))); $fi += 2;
-			$fi += 1;
+			$newdata->exp = Number(ord(substr($filedata, $fi, 1)), ord(substr($filedata, $fi+1, 1)), ord(substr($filedata, $fi+2, 1))); $fi += 3;
 			
 			array_push($this->data, $newdata);
 		}
