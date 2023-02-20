@@ -1,0 +1,161 @@
+<table id="npc" style="text-align:center">
+	<tr><th colspan="4"><font size=3><[npc.name]></font>
+	<[if npc.image]><tr><td colspan="4" ><img src="<[npc.image]>"><[endif]>
+
+	<tr><th><b>NPC ID: </b><td><a>#<[npc.id]></a> 
+
+	<[if npc.boss]><th><b> Type: </b><td><b><font color="red"> BOSS</font></b><[endif]>
+	<[if npc.normal]><th><b> Type: </b><td><b><font color="gray"> Normal</font></b><[endif]>
+	<[if npc.child]><th><b>Type: </b><td><b><font color="b57edc"> BOSS Child</font></b><[endif]>
+	<[if npc.passive]><tr><th><b> Nature:</b><td> Passive<[endif]>
+	<[if npc.aggressive]><tr><th><b> Nature:</b><td> Aggressive<[endif]>
+
+	<br><[if npc.desc]><tr><th colspan="1"><b>Sometimes Says: </b><td colspan="3"><i><[npc.desc]></i><[endif]>
+	
+</table>
+
+<[if @maps]>
+<table id="npc-maps" style="text-align:center">
+	<thead>
+		<tr><th colspan="2">Map Locations
+		<tr>
+		
+		<[foreach maps map]>
+		<[if !map.row]><tr><[endif]><td><a href="map.php?map=<[map.mapid]>">#<[map.mapid]> <[map.name]></a>
+		<[endforeach]>
+</table>
+<[endif]>
+<[if !@maps]>
+<table id="npc-nomaps">
+	<thead>
+		<tr><th colspan="2">No Map Spawn Data
+</table>
+<[endif]>
+
+<[if npc.monster]>
+<table id="npc-stats" style="text-align:center">
+	<tbody>
+		<tr><th colspan="4">Stats
+		<tr><th>Level<td><[npc.level]><th>EXP<td><[npc.exp]>
+		<tr><th>HP<td><[npc.hp]><th>TP<td><[npc.tp]>
+		<tr><th>Damage<td><[npc.mindam]> - <[npc.maxdam]>
+		<th>Accuracy<td><[npc.accuracy]>
+		<tr><th>Armor<td><[npc.armor]>
+		<th>Evade<td><[npc.evade]>
+		<tr><th>Return Damage:<td><[npc.rdam]>
+		<tr><th>Attack Element<td><[npc.element_attack]><th>Attack Element Power<td><[npc.element_attack_power]>
+		<tr><th>Resists Element<td><[npc.element_weak]><th>Resist Element Power<td><[npc.element_weak_power]>
+
+</table>
+
+<[if @drops]>
+<table id="npc-drops" style="text-align:center">
+	<thead>
+		<tr><th colspan="3">Drops
+		<tr><th>Item<th>Amount<th>Rarity
+	<tbody>
+<[foreach drops drop]>
+		<tr><td><a href="item.php?item=<[drop.itemid]>"><[if drop.image]><img src="<[drop.image]>"><br><[endif]>#<[drop.itemid]> <[drop.item]></a>
+		<td><b><[drop.amount]></b>
+		<td><b><[drop.pct]></b>
+
+<[endforeach]>
+</table>
+<[endif]>
+
+<[else]>
+
+<[if @shops]>
+<table id="npc-shop" style="text-align:center">
+	<thead>
+		<tr><th colspan="2">Shop: <a href="shop.php?shop=<[shopid]>"><[shopname]></a>
+		<tr><th>Item<th>Price
+	<tbody>
+<[foreach shops shop]>
+		<tr><td><a href="item.php?item=<[shop.itemid]>"><[if shop.image]><img src="<[shop.image]>"><br><[endif]>#<shop.itemid]> <[shop.item]><a>
+		<td><[if shop.sell]><b>Buy: </b><a><[shop.sell]>g</a><br><[endif]><[if shop.buy]><b>Sell:</b> <a><[shop.buy]>g</a><[endif]>
+
+<[endforeach]>
+</table>
+<[endif]>	
+
+<[if @crafts]>
+<table id="npc-craft" style="text-align:center">
+	<thead>
+		<tr><th colspan="2">Craft: <a href="shop.php?shop=<[shopid]>"><[shopname]></a>
+		<tr><th>Item<th>Ingredients
+	<tbody>
+<[foreach crafts craft]>
+		<tr><td><a href="item.php?item=<[craft.itemid]>"><[if craft.image]><img src="<[craft.image]>"><br><[endif]>#<[craft.itemid]> <[craft.item]></a>
+		<td><[foreach craft.ingredients ing]>
+<a href="item.php?item=<[ing.itemid]>"><[ing.item]></a>: <[ing.amount]><br>
+		<[endforeach]>
+<[endforeach]>
+</table>
+<[endif]>
+
+<[if @skills]>
+<table id="npc-skill" style="text-align:center">
+	<thead>
+		<tr><th colspan="3">Skills: <a href="trainer.php?trainer=<[npc.shopid]>"><[skillname]></a>
+		<tr><th>Spell<th>Cost<th>Requirements
+	<tbody>
+<[foreach skills skill]>
+		<tr><td><a href="spell.php?spell=<[skill.spellid]>"><[if skill.image]><img src="<[skill.image]>"><br><[endif]>#<[skill.spellid]> <[skill.spell]></a><td><b><[skill.cost]></b><td>
+		<[if skill.levelreq]><b>Level: <[skill.levelreq]></b><br><[endif]>
+		<[if skill.clasreq]><b>Class: <a href="class.php?class=<[skill.clasreq]>"><[skill.clasname]></a></b><br><[endif]>
+		<[if skill.sk1]><b>Skill 1: <a href="spell.php?spell=<[skill.sk1]>"><[skill.sk1name]></a></b><br><[endif]>
+		<[if skill.sk2]><b>Skill 2: <a href="spell.php?spell=<[skill.sk2]>"><[skill.sk2name]></a></b><br><[endif]>
+		<[if skill.sk3]><b>Skill 3: <a href="spell.php?spell=<[skill.sk3]>"><[skill.sk3name]></a></b><br><[endif]>
+		<[if skill.sk4]><b>Skill 4: <a href="spell.php?spell=<[skill.sk4]>"><[skill.sk4name]></a></b><br><[endif]>
+		<[if skill.strreq]><b>STR: <[skill.strreq]></b><br><[endif]>
+		<[if skill.intreq]><b>INT: <[skill.intreq]></b><br><[endif]>
+		<[if skill.wisreq]><b>WIS: <[skill.wisreq]></b><br><[endif]>
+		<[if skill.agireq]><b>AGI: <[skill.agireq]></b><br><[endif]>
+		<[if skill.conreq]><b>CON: <[skill.conreq]></b><br><[endif]>
+		<[if skill.chareq]><b>CHA: <[skill.chareq]></b><br><[endif]>
+		<[foreach skill.spellreq spellreq]>
+			<b>Spell:</b> <a href="spell.php?spell=<[spellreq.spellid]>"><[spellreq.spell]></a><br>
+		<[endforeach]>
+<[endforeach]>
+</table>
+<[endif]>
+
+<[if quest.id]>
+<table id="npc-quest" style="text-align:center">
+	<thead>
+	<tr><th colspan="2">Quest Rewards: <a href="quest.php?quest=<[quest.id]>"><[quest.name]></a>
+	<tbody>
+		<th>Name<th>Reward
+
+	<[foreach rewards quest]>
+		<[if quest.itemid]>
+		<tr>	
+		<td><[if quest.isitem]><a href="item.php?item=<[quest.itemid]>"><[if quest.image]><img src="<[quest.image]>"><br><[endif]><[quest.itemid]> <[quest.item]></a><[endif]><[if !quest.isitem]><img src="./images/notice.png"><a><[quest.item]></a><[endif]></center>
+		<td> <b><[quest.amount]></b><td><[endif]>
+	<[endforeach]>
+	
+</table>
+<[endif]>
+
+<[if inn]>
+<table id="npc-inn" style="text-align:center">
+	<thead>
+	<tr><th colspan="1">Inn: <a href="inn.php?inn=<[inn.id]>"><[inn.name]></a>
+	<tr><td><b>Cost: <[if !inn.cost]>1g per HP+TP recovered<[endif]><[if inn.cost]><[inn.cost]>g<[endif]></b>
+	<tr><td><b>Default Citizen Respawn Location: </b><a href="map.php?map=<[inn.spawnmap]>">#<[inn.spawnmap]> <[inn.spawnmapname]></a>
+</table>
+<[if inn.quizcount]>
+<table id="inn-quiz">
+	<thead>
+	<tr><th colspan="2">Citizenship Quiz</a>
+	<tr><th>Question<th>Answer
+	<[foreach quizzes quiz]>
+	<tr><td><b><[quiz.question]></b><td><a><[quiz.answer]></a>
+	<[endforeach]>
+</table>
+<[endif]>
+
+<[endif]>
+
+<[endif]>

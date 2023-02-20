@@ -1,0 +1,37 @@
+<table id="quest" style="text-align:center">
+	<tr><th colspan="4" width="100%"><h2 style="margin:0.5ex 0"><[quest.name]></h2>
+	<tr><td><b>Quest ID: <a>#<[quest.id]></a></b>
+	<td><b>Type: </b><[if quest.questends]><a>Terminal</a><[endif]><[if !quest.questends]><a>Repeatable<[if quest.questdaily]><[if !oncedaily]> <[quest.questdaily]> Times<[endif]> Daily <[endif]></a><[endif]>
+
+</table>
+
+
+
+<table id="questnpcs" style="text-align:center">
+	<tbody>
+		<tr><th colspan="4">Associated NPCs
+		
+		<[foreach vendors vendor]>
+			<[if !vendor.row]><tr><[endif]><td><a href="npc<[php]>?npc=<[vendor.npcid]>"><[if vendor.image]><img src="<[vendor.image]>">
+			<br><[endif]>#<[vendor.npcid]> <[vendor.name]><[if vendor.main]><img src="./images/star.png"><[endif]></a>
+		
+		
+		<[endforeach]>
+</table>
+
+<[if showreward]>
+<table id = "questitems" style="text-align:center">
+	<tbody>
+		<tr><th colspan="2">Possible Rewards
+		<tr><th>Item<th>Amount
+		<[foreach itemrewards reward]>
+		<tr>
+		<td><a href="item.php?item=<[reward.itemid]>"><[if reward.image]><img src="<[reward.image]>"><br><[endif]>#<[reward.itemid]> <[reward.name]></a>
+		<td><b><[reward.amount]></b>	
+		<[endforeach]>
+		<[foreach rewards reward]>
+		<tr><td><a><img src="./images/notice.png"><[reward.type]></a><td><b><[reward.given]></b>
+		<[endforeach]>
+		
+</table>
+<[endif]>

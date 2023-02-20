@@ -1,0 +1,31 @@
+<table id="inn" style="text-align:center">
+	<tr><th width="100%"><h2 style="margin:0.5ex 0"><[inn.name]></h2>
+	<tr><td><b>Default Citizen Respawn Location: </b><a href="map<[php]>?map=<[inn.spawnmap]>">#<[inn.spawnmap]> <[inn.lowname]></a>
+	<[if inn.hi_level]><tr><td><b>Level <[inn.hi_level]> Respawn Location: </b><a href="map<[php]>?map=<[inn.hi_spawnmap]>">#<[inn.hi_spawnmap]> <[inn.hiname]></a><[endif]>
+	<[if inn.sleepmap]><[if inn.cost]><tr><td><b>Cost: <[inn.cost]>g<[endif]>
+	<[if !inn.cost]><tr><td><b>Cost: 1g per HP+TP recovered<[endif]><[endif]>
+	
+</table>
+
+<[if @inns]>
+<table id="innkeepers" style="text-align:center">
+	<tbody>
+		<tr><th colspan="4">Innkeepers
+		
+		<[foreach inns inn]>
+			<[if !inn.row]><tr><[endif]><td><a href="npc<[php]>?npc=<[inn.npcid]>"><[if inn.image]><img src="<[inn.image]>"><br><[endif]>#<[inn.npcid]> <[inn.name]></a>	
+		<[endforeach]>
+</table>
+<[endif]>
+
+<[if @quizzes]>
+<table id="inn-quizzes" style="text-align:center">
+	<tbody>
+		<tr><th colspan="2">Citizenship Quiz
+		<tr><th>Question<th>Answer
+			<[foreach quizzes quiz]>
+			<tr><td><[quiz.question]>
+			<td><[quiz.answer]>
+			<[endforeach]>
+</table>
+<[endif]>

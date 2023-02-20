@@ -1,0 +1,18 @@
+
+<table id="shops" style="text-align:center">
+	<caption><font size=3><[section]></font></caption>
+	<thead>
+		<tr>
+			<th>Shop
+			<th>Shop Items
+			<th>Craft Items
+	<tbody>
+
+<[foreach shops shop]>
+	<tr>
+	<td><a href="shop.php?shop=<[shop.id]>">#<[shop.id]> <[shop.name]></a>
+	<td><b><[shop.trades]></b>
+	<td><b><[shop.crafts]></b>
+<[endforeach]>
+</table>
+

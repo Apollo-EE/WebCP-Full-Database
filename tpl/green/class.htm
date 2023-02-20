@@ -1,0 +1,36 @@
+<table id="class">
+	<tr><th width="100%"><h2 style="margin:0.5ex 0"><[class.name]></h2>
+	<tr><td><b>Class type:</b> <[class.type_name]>
+	<[if class.base]>
+		<tr><td><b>Base class:</b> <a href="class.php?class=<[class.base]>"><[class.base_name]></a>
+	<[endif]>
+</table>
+
+<table id="item-stats">
+	<tbody>
+		<tr><th colspan="4">Base Stats
+		<tr><th>STR<td><[class.str]><th>INT<td><[class.intl]>
+		<tr><th>WIS<td><[class.wis]><th>AGI<td><[class.agi]>
+		<tr><th>CON<td><[class.con]><th>CHA<td><[class.cha]>
+</table>
+
+<[if @quests]>
+<table id="item-quests">
+	<thead>
+		<tr><th colspan="2">Quests
+		<tr><th>NPC<th>Quest
+		<[foreach quests quest]>
+		<tr>
+		<td><a href="npc.php?npc=<[quest.npcid]>"><center><img src="<[quest.image]>"><br>#<[quest.npcid]> <[quest.npcname]></a></center>
+		<td><a href="quest.php?quest=<[quest.questid]>"><[quest.questname]></a>
+		<[endforeach]>
+	<tbody>
+</table>
+<[endif]>
+
+<[if !foundclas]>
+<table id="not-found">
+	<thead>
+		<tr><th>Unavailable Class
+</table>
+<[endif]>

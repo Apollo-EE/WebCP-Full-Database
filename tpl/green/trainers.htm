@@ -1,0 +1,16 @@
+
+<table id="trainers" style="text-align:center">
+	<caption><font size=3><[section]></font></caption>
+	<thead>
+		<tr>
+			<th>Trainer
+			<th>Skills Taught
+	<tbody>
+
+<[foreach trainers trainer]>
+	<tr>
+	<td><a href="trainer.php?trainer=<[trainer.id]>">#<[trainer.id]> <[trainer.name]></a>
+	<td><b><[trainer.skills]></b>
+<[endforeach]>
+</table>
+

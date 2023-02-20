@@ -1,0 +1,28 @@
+<div class="jumppage">
+<form action="" method="GET">
+<input type="hidden" name="section" value="<[section]>">
+<label for="page">Page:</label> <input type="text" name="page" id="page" value="<[page]>" size="3">/<[pages]> <input type="submit" value="Go">
+</form>
+</div>
+
+<span class="showing">Showing <[showing]> (<[start]> - <[end]>) of <[count]> spells.</span>
+<[pagination]>
+
+<table id="spells">
+	<thead>
+		<tr><th colspan="2"><[section]>
+			<tr><th>Spell
+			<th>Data
+	<tbody>
+<[foreach spells spell]>
+		<tr>
+			<td><center><a href="spell<[php]>?spell=<[spell.id]>"><[if spell.image]><img src="<[spell.image]>"><br><[endif]>#<[spell.id]> <[spell.name]></a></center>
+
+
+			<td><[spell.data]>
+
+<[endforeach]>
+</table>
+
+<[pagination]>
+<span class="showing">Showing <[showing]> (<[start]> - <[end]>) of <[count]> spells.</span>

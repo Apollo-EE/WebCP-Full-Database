@@ -1,0 +1,20 @@
+<table id="staff">
+	<thead>
+		<tr>
+			<th>Name
+			<th>Title
+			<th>Gender
+			<th>Rank
+	<tbody>
+<[foreach characters char]>
+		<tr>
+			<td><[if GM]><a href="./character<[php]>?name=<[%char.name]>"><[endif]><[char.name]><[if GM]></a><[endif]>
+
+			<td><[char.title]>
+
+			<td><[char.gender]>
+
+			<td><[char.admin_str]>
+
+<[endforeach]>
+</table>

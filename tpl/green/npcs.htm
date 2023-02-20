@@ -1,0 +1,28 @@
+<div class="jumppage">
+<form action="" method="GET">
+<input type="hidden" name="section" value="<[section]>">
+<label for="page">Page:</label> <input type="text" name="page" id="page" value="<[page]>" size="3">/<[pages]> <input type="submit" value="Go">
+</form>
+</div>
+
+<span class="showing">Showing <[showing]> (<[start]> - <[end]>) of <[count]> npcs.</span>
+<[pagination]>
+
+<table id="npcs">
+	<caption><[section]></caption>
+	<thead>
+		<tr>
+			<th>NPCs
+			<[if monsters]><th>Data<[endif]>
+	<tbody>
+<[foreach npcs npc]>
+		<tr>
+			<td><center><a href="npc<[php]>?npc=<[npc.id]>"><[if npc.image]><img src="<[npc.image]>"><br><[endif]>#<[npc.id]> <[npc.name]></a></center>
+
+			<[if monsters]><td><[npc.data]><[endif]>
+
+<[endforeach]>
+</table>
+
+<[pagination]>
+<span class="showing">Showing <[showing]> (<[start]> - <[end]>) of <[count]> npcs.</span>

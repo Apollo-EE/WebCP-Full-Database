@@ -1,0 +1,66 @@
+<table id="spell" style="text-align:center">
+	<tr><th colspan = 4 style="text-align:center"><font size=3><[spell.name]></font>
+	<[if spell.image]><tr><td colspan = 4><img src="<[spell.image]>"><[endif]>
+	<tr><th><b>Spell ID: <td>#<[spell.id]></b></i>
+	<th><b>Chant:</b> <td><i><[spell.desc]></i>
+</table>
+
+<table id="spell-stats" style="text-align:center">
+	<tbody>
+		<tr><th colspan="4">Stats
+		<tr><th>TP Cost<td><[spell.tp]><th>SP Cost<td><[spell.sp]>
+
+		<[if spell.damage]>
+		<tr><th>Damage<td><[spell.mindam]> - <[spell.maxdam]><th>Accuracy<td><[spell.accuracy]>
+		<tr><th>Damages Element<td><[spell.element]><th>Element Power<td><[spell.element_power]>	
+		<[endif]>
+		<[if spell.heal]>
+		<tr><th>HP Recovered<td>+<[spell.hp]>
+		<[endif]>
+</table>
+
+<[if @masters]>
+<table id="spell-masters" style="text-align:center">
+	<thead>
+		<tr><th colspan="4">Skill Masters
+		<tr><th>NPC<th>Cost<th>Requirements
+	<tbody>
+<[foreach masters skill]>
+		<tr><td><[if skill.image]><img src="<[skill.image]>"><br><[endif]><a href="npc.php?npc=<[skill.npcid]>"><[skill.npc]></a><td><b><[skill.cost]></b><td>
+		<[if skill.levelreq]><b>Level:</b> <[skill.levelreq]><br><[endif]>
+		<[if skill.clasreq]><b>Class:</b> <a href="class.php?class=<[skill.clasreq]>"><[skill.clasreqname]></a><br><[endif]>
+		<[if skill.sk1]><b>Skill 1:</b> <a href="spell.php?spell=<[skill.sk1]>"><[skill.sk1name]></a><br><[endif]>
+		<[if skill.sk2]><b>Skill 2:</b> <a href="spell.php?spell=<[skill.sk2]>"><[skill.sk2name]></a><br><[endif]>
+		<[if skill.sk3]><b>Skill 3:</b> <a href="spell.php?spell=<[skill.sk3]>"><[skill.sk3name]></a><br><[endif]>
+		<[if skill.sk4]><b>Skill 4:</b> <a href="spell.php?spell=<[skill.sk4]>"><[skill.sk4name]></a><br><[endif]>
+		<[if skill.strreq]><b>STR:</b> <[skill.strreq]><br><[endif]>
+		<[if skill.intreq]><b>INT:</b> <[skill.intreq]><br><[endif]>
+		<[if skill.wisreq]><b>WIS:</b> <[skill.wisreq]><br><[endif]>
+		<[if skill.agireq]><b>AGI:</b> <[skill.agireq]><br><[endif]>
+		<[if skill.conreq]><b>CON:</b> <[skill.conreq]><br><[endif]>
+		<[if skill.chareq]><b>CHA:</b> <[skill.chareq]><br><[endif]>
+		<[foreach skill.spellreq spellreq]>
+			<b>Spell:</b> <a href="spell.php?spell=<[spellreq.spellid]>"><[spellreq.spell]></a><br>
+		<[endforeach]>
+<[endforeach]>
+</table>
+<[endif]>
+
+<[if @items]>
+<table id="spell-items" style="text-align:center">
+	<thead>
+		<tr><th colspan="4">Skill Items
+		
+		<[foreach items item]>
+		<tr><td><a href="item.php?item=<[item.itemid]>"><[if item.graphic]><img src="<[item.graphic]>"><br><[endif]>#<[item.itemid]> <[item.name]></a>
+		<[endforeach]>
+		
+</table>
+<[endif]>
+
+<[if !found]>
+<table id="not-found">
+	<thead>
+		<tr><th>Unavailable Skill
+</table>
+<[endif]>

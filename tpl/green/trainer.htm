@@ -1,0 +1,41 @@
+<table id="trainer" style="text-align:center">
+	<tr><th width="100%"><h2 style="margin:0.5ex 0"><[trainer.name]></h2>
+	<[if trainer.minlevel]><tr><td><b>Required Level: <[trainer.minlevel]><[endif]>
+	<[if trainer.clasreq]><tr><td><b>Required Class: <[trainer.clasreqname]><[endif]>
+
+</table>
+
+<table id="trainers" style="text-align:center">
+	<tbody>
+		<tr><th colspan="4">Trainers
+		
+		<[foreach trainers trainer]>
+			<[if !trainer.row]><tr><[endif]><td><a href="npc<[php]>?npc=<[trainer.npcid]>"><[if trainer.image]><img src="<[trainer.image]>"><br><[endif]>#<[trainer.npcid]> <[trainer.name]></a>
+		
+		
+		<[endforeach]>
+</table>
+
+<[if @skills]>
+<table id="trainer-skills" style="text-align:center">
+	<tbody>
+		<tr><th colspan="4">Skills Taught
+		<tr><th>Image<th>Name<th>Requirements
+			<[foreach skills skill]>
+			<tr><td><a><[if skill.image]><img src= "<[skill.image]>"><br><[endif]>#<[skill.skillid]></a>
+			<td><a href="spell<[php]>?spell=<[skill.skillid]>"><[skill.name]></a>
+			<td><[if skill.levelreq]><b>Level: <[skill.levelreq]><br><[endif]>
+			<[if skill.clasreq]><b>Class: <a href="class<[php]>?class=<[skill.clasid]>"><[skill.clasreq]></a><br><[endif]>
+			<[if skill.sk1id]><b>Skill 1: <a href="spell<[php]>?spell=<[skill.sk1id]>"><[skill.sk1name]></a><br><[endif]>
+			<[if skill.sk2id]><b>Skill 2: <a href="spell<[php]>?spell=<[skill.sk2id]>"><[skill.sk2name]></a><br><[endif]>
+			<[if skill.sk3id]><b>Skill 3: <a href="spell<[php]>?spell=<[skill.sk3id]>"><[skill.sk3name]></a><br><[endif]>
+			<[if skill.sk4id]><b>Skill 4: <a href="spell<[php]>?spell=<[skill.sk4id]>"><[skill.sk4name]></a><br><[endif]>
+			<[if skill.strreq]><b>Strength: <[skill.strreq]><br><[endif]>
+			<[if skill.intlreq]><b>Intelligence: <[skill.intlreq]><br><[endif]>
+			<[if skill.wisreq]><b>Wisdom: <[skill.wisreq]><br><[endif]>
+			<[if skill.agireq]><b>Agility: <[skill.agireq]><br><[endif]>
+			<[if skill.conreq]><b>Constitution: <[skill.conreq]><br><[endif]>
+			<[if skill.chareq]><b>Charisma: <[skill.chareq]><br><[endif]>
+			<[endforeach]>
+</table>
+<[endif]>

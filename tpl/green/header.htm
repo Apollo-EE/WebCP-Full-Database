@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<title><[sitename]> :: EOSERV Control Panel :: <[pagetitle]></title>
+<link rel="stylesheet" href="./tpl/eo/style.css">
+
+<div id="header">
+<h1><a href="<[homeurl]>"><[sitename]></a></h1>
+<span id="subtitle">
+EOSERV Control Panel
+</span>
+<h2><[pagetitle]></h2>
+</div>
+
+<ul class="nav">
+	<li><a href="./index<[php]>">Home</a>
+	<li><a href="./players<[php]>">Top&nbsp;Players</a>
+	<li><a href="./guilds<[php]>">Top&nbsp;Guilds</a>
+	<li><a href="./staff<[php]>">Staff</a>
+	<li><a href="./online<[php]>">Online List</a>
+</ul>
+
+<ul class="nav">
+	<li><span>Database</span>
+	<li><a href="./items<[php]>">Items</a>
+	<li><a href="./spells<[php]>">Skills</a>
+	<li><a href="./classes<[php]>">Classes</a>
+	<li><a href="./npcs<[php]>">NPCs</a>
+</ul>
+<ul class="nav">
+	<li><a href="./shops<[php]>">Shops</a>
+	<li><a href="./trainers<[php]>">Trainers</a>
+	<li><a href="./inns<[php]>">Inns</a>
+	<li><a href="./quests<[php]>">Quests</a>
+	<li><a href="./maps<[php]>">Maps</a>
+</ul>
+</ul>
+
+<[if logged]>
+<ul class="nav playernav">
+	<li><span><[username]></span>
+	<li><a href="./characters<[php]>">My&nbsp;Characters&nbsp;(<[numchars]>)</a>
+	<li><a href="./logout<[php]>?csrf=<[%csrf]>">Logout</a>
+</ul>
+<[endif]>
+
+<[foreach chardata_guilds guild tag]>
+<ul class="nav guildnav">
+	<li><span>Guild: <a href="./guild<[php]>?tag=<[%tag]>"><[tag]></a></span>
+	<li><a href="./guildmembers<[php]>?tag=<[%tag]>">Member&nbsp;List</a>
+</ul>
+<[endforeach]>
+
+<[if GUIDE]>
+<ul class="nav guidenav">
+	<li><span>Light Guide Tools</span>
+	<li><a href="./reports<[php]>">Reports</a>
+</ul>
+<[endif]>
+
+<[if GUARDIAN]>
+<ul class="nav guardiannav">
+	<li><span>Guardian Tools</span>
+	<li><a href="./bans<[php]>">Ban&nbsp;Control</a>
+</ul>
+<[endif]>
+
+<[if GM]>
+<ul class="nav gmnav">
+	<li><span>GM Tools</span>
+	<li><a href="./allaccounts<[php]>">All&nbsp;Accounts</a>
+	<li><a href="./allcharacters<[php]>">All&nbsp;Characters</a>
+	<li><a href="./allguilds<[php]>">All&nbsp;Guilds</a>
+	<li><a href="./search<[php]>">Search</a>
+</ul>
+<[endif]>
+
+<div id="article">
+
+<[if message]>
+<span class="message"><[#message]></span>
+
+<[endif]>
+<[if error]>
+<span class="error"><[#error]></span>
+
+<[endif]>
+<div class="aside" id="status">
+<h3>Server Status</h3>
+<[#statusstr]><br>
+<[if online]>
+<small>Online: <a href="./online<[php]>"><b><[onlinecharacters]></b>/<b><[maxplayers]></b></a></small>
+<[endif]>
+</div>
+
+<[if !logged]>
+
+<div class="aside">
+<h3>Login</h3>
+<form action="<[if loggingout]>./<[endif]>" method="POST">
+<input type="hidden" name="action" value="login">
+<label for="username">Username</label>
+<input type="text" name="username" id="username">
+<label for="password">Password</label>
+<input type="password" name="password" id="password">
+<[if login_need_captcha]>
+<label for="captcha">CAPTCHA</label>
+<p>You have entered too many invalid passwords. Please enter the letters shown in the image.</p>
+<img src="./captcha<[php]>">
+<input type="text" name="captcha" id="captcha">
+<[endif]>
+<input type="submit" id="submit" value="Login">
+</form>
+</div>
+<[endif]>

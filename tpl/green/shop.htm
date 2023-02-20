@@ -1,0 +1,40 @@
+<table id="shop" style="text-align:center">
+	<tr><th width="100%"><h2 style="margin:0.5ex 0"><[shop.name]></h2>
+	<[if shop.minlevel]><tr><td><b>Required Level: <[shop.minlevel]><[endif]>
+	<[if shop.clasreq]><tr><td><b>Required Class: <[shop.clasreqname]><[endif]>
+
+</table>
+
+<table id="shop-vendors" style="text-align:center">
+	<tbody>
+		<tr><th colspan="4">Vendors
+		
+		<[foreach vendors vendor]>
+			<[if !vendor.row]><tr><[endif]><td><a href="npc<[php]>?npc=<[vendor.npcid]>"><[if vendor.image]><img src="<[vendor.image]>"><br><[endif]>#<[vendor.npcid]> <[vendor.name]></a>
+		
+		
+		<[endforeach]>
+</table>
+<[if shop.numtrades]>
+<table id="shop-trades" style="text-align:center">
+	<tbody>
+		<tr><th colspan="2">Shop
+		<tr><th>Item<th>Price
+			<[foreach trades trade]>
+			<tr><td><a href="item<[php]>?item=<[trade.itemid]>"><[if trade.image]><img src= "<[trade.image]>"><br><[endif]>#<[trade.itemid]> <[trade.item]></a>
+			<td><b><[if trade.sell]>Buy: <a><[trade.sell]>g</a><[endif]><[if trade.buy]><br>Sell: <a><[trade.buy]>g</a><[endif]></b>
+			<[endforeach]>
+</table>
+<[endif]>
+<[if shop.numcrafts]>
+<table id="shop-crafts" style="text-align:center">
+	<tbody>
+		<tr><th colspan="2">Craft
+		<tr><th>Item<th>Ingredients
+		<[foreach crafts craft]>
+		<tr><td><center><a href="item.php?item=<[craft.itemid]>"><[if craft.image]><img src="<[craft.image]>"><br><[endif]>#<[craft.itemid]> <[craft.item]></a></center>
+		<td><[foreach craft.ingredients ing]><a href="item.php?item=<[ing.itemid]>"><[ing.item]></a><b>: <[ing.amount]></b><br>
+		<[endforeach]>
+		<[endforeach]>
+</table>
+<[endif]>

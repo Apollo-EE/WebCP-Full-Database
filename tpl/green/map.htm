@@ -1,0 +1,298 @@
+<table id="map" style="text-align:center">
+	<tr><th colspan="4" width="100%"><h2 style="margin:0.5ex 0"><[map.name]></h2>
+	<tr><td><b>Map ID: <a>#<[map.id]></a></b>
+	<td><b>Map Size: <a><[map.width]>x<[map.height]></b>
+	<tr>
+	<td>
+		<b>Combat Mode:
+		<[if map.pk]><font color="red">Player Kill</font><[endif]><[if !map.pk]><font color="gray">None</font><[endif]>
+		</b>
+	
+	<td>
+		<b>Hazard: 
+		<[if !map.hazard]><font color="gray">None</font><[endif]>
+		<[if map.poison]><font color="red">Poison (HP Drain)</font><[endif]>
+		<[if map.vortex]><font color="purple">Vortex (TP Drain)</font><[endif]>
+		<[if map.quake1]><font color="orange">Earthquake (Light)</font><[endif]>
+		<[if map.quake2]><font color="orange">Earthquake (Small)</font><[endif]>
+		<[if map.quake3]><font color="orange">Earthquake (Medium)</font><[endif]>
+		<[if map.quake4]><font color="orange">Earthquake (Heavy)</font><[endif]>
+		</b>
+	<tr>
+	<td>
+		<b>Scroll Teleport: 
+			<[if map.scroll]><font color="gray">Enabled</font><[endif]>
+			<[if !map.scroll]><font color="red">Disabled</font><[endif]>
+		</b>
+	<td>
+		<b>Mini-Map:
+			<[if map.minimap]><font color="gray">Enabled</font><[endif]>
+			<[if !map.minimap]><font color="red">Disabled</font><[endif]>
+		</b>
+	<tr>
+	<td>
+		<b>Respawn Relocation: 
+			<[if !map.respawn]><a>Disabled</a><[endif]>
+			<[if map.respawn]><a>Enabled</a><[endif]>
+		</b>
+	<td>
+		<b>Respawn Location: 
+		<[if !map.respawn]><font color="gray">-</font><[endif]>
+		<[if map.respawn]>x: <a><[map.rx]></a> y: <a><[map.ry]></a><[endif]>
+		</b>
+</table>
+
+<[if @warps]>
+<table id="warps" style="text-align:center">
+	<tbody>
+		<tr><th colspan="4">Map Teleport Locations
+		<tr><th>Destination<th>Level Required<th>Key Required
+		
+		<[foreach warps warp]>
+		<tr>
+		<td><a href="map<[php]>?map=<[warp.warpmap]>">#<[warp.warpmap]> <[warp.warpname]></a>
+		<td><b><[warp.level]></b>
+		<td><b><[if warp.keylocked]><a href="item<[php]>?item=<[warp.keyid]>"><img src="<[warp.keyimage]>"><br>#<[warp.keyid]> <[warp.keyname]></a><[endif]><[if !warp.keylocked]>-<[endif]></b>
+		
+		<[endforeach]>
+</table>
+<[endif]>
+
+<[if @items]>
+<table id="items" style="text-align:center">
+	<tbody>
+		<tr><th colspan="4">Map Chest Items
+		<tr><th>Item<th>Amount<th>Spawn Time<th>Key
+		<[foreach items item]>
+		<tr>
+		<td><a href="item<[php]>?item=<[item.itemid]>"><[if item.image]><img src="<[item.image]>"><br><[endif]>#<[item.itemid]> <[item.name]></a><td><b><[item.amount]></b><td><b><[item.spawntime]><b>
+		<td><[if item.keyid]><a href="item<[php]>?item=<[item.keyid]>"><[endif]><[if item.keyimage]><img src="<[item.keyimage]>"><[item.br]><[endif]><[item.keyid]> <[item.keyname]><[if item.keyid]></a><[endif]>
+		<[endforeach]>
+		
+</table>
+<[endif]>
+
+<[if @bosses]>
+<table id="bosses" style="text-align:center">
+	<tbody>
+		<tr><th colspan="4">Boss NPCs
+		<tr>
+		<[foreach bosses npc]>
+			<[if !npc.row]><tr><[endif]><td><a href="npc<[php]>?npc=<[npc.npcid]>"><[if npc.image]><img src="<[npc.image]>">
+			<br><[endif]>#<[npc.npcid]> <[npc.name]><[if npc.boss]><img src="./images/star.png"><[endif]></a>
+		
+		
+		<[endforeach]>
+</table>
+<[endif]>
+
+<[if @mobs]>
+<table id="mobs" style="text-align:center">
+	<tbody>
+		<tr><th colspan="4">Mob NPCs
+		
+		<[foreach mobs npc]>
+			<[if !npc.row]><tr><[endif]><td><a href="npc<[php]>?npc=<[npc.npcid]>"><[if npc.image]><img src="<[npc.image]>">
+			<br><[endif]>#<[npc.npcid]> <[npc.name]></a>
+		
+		
+		<[endforeach]>
+</table>
+<[endif]>
+
+<[if @pets]>
+<table id="pets" style="text-align:center">
+	<tbody>
+		<tr><th colspan="4">Pet NPCs
+		
+		<[foreach pets npc]>
+			<[if !npc.row]><tr><[endif]><td><a href="npc<[php]>?npc=<[npc.npcid]>"><[if npc.image]><img src="<[npc.image]>">
+			<br><[endif]>#<[npc.npcid]> <[npc.name]></a>
+		
+		
+		<[endforeach]>
+</table>
+<[endif]>
+
+<[if @mines]>
+<table id="mines" style="text-align:center">
+	<tbody>
+		<tr><th colspan="4">Mine NPCs
+		
+		<[foreach mines npc]>
+			<[if !npc.row]><tr><[endif]><td><a href="npc<[php]>?npc=<[npc.npcid]>"><[if npc.image]><img src="<[npc.image]>">
+			<br><[endif]>#<[npc.npcid]> <[npc.name]></a>
+		
+		
+		<[endforeach]>
+</table>
+<[endif]>
+
+<[if @killers]>
+<table id="killers" style="text-align:center">
+	<tbody>
+		<tr><th colspan="4">Killer NPCs
+		
+		<[foreach killers npc]>
+			<[if !npc.row]><tr><[endif]><td><a href="npc<[php]>?npc=<[npc.npcid]>"><[if npc.image]><img src="<[npc.image]>">
+			<br><[endif]>#<[npc.npcid]> <[npc.name]></a>
+		
+		
+		<[endforeach]>
+</table>
+<[endif]>
+
+<[if @shops]>
+<table id="shops" style="text-align:center">
+	<tbody>
+		<tr><th colspan="4">Shop Keepers
+		
+		<[foreach shops npc]>
+			<[if !npc.row]><tr><[endif]><td><a href="npc<[php]>?npc=<[npc.npcid]>"><[if npc.image]><img src="<[npc.image]>">
+			<br><[endif]>#<[npc.npcid]> <[npc.name]></a>
+		
+		
+		<[endforeach]>
+</table>
+<[endif]>
+
+<[if @inns]>
+<table id="inns" style="text-align:center">
+	<tbody>
+		<tr><th colspan="4">Inn Keepers
+		
+		<[foreach inns npc]>
+			<[if !npc.row]><tr><[endif]><td><a href="npc<[php]>?npc=<[npc.npcid]>"><[if npc.image]><img src="<[npc.image]>">
+			<br><[endif]>#<[npc.npcid]> <[npc.name]></a>
+		
+		
+		<[endforeach]>
+</table>
+<[endif]>
+
+<[if @lockers]>
+<table id="lockers" style="text-align:center">
+	<tbody>
+		<tr><th colspan="4">Locker Keepers
+		
+		<[foreach lockers npc]>
+			<[if !npc.row]><tr><[endif]><td><a href="npc<[php]>?npc=<[npc.npcid]>"><[if npc.image]><img src="<[npc.image]>">
+			<br><[endif]>#<[npc.npcid]> <[npc.name]></a>
+		
+		
+		<[endforeach]>
+</table>
+<[endif]>
+
+<[if @bankers]>
+<table id="bankers" style="text-align:center">
+	<tbody>
+		<tr><th colspan="4">Bankers
+		
+		<[foreach bankers npc]>
+			<[if !npc.row]><tr><[endif]><td><a href="npc<[php]>?npc=<[npc.npcid]>"><[if npc.image]><img src="<[npc.image]>">
+			<br><[endif]>#<[npc.npcid]> <[npc.name]></a>
+		
+		
+		<[endforeach]>
+</table>
+<[endif]>
+
+<[if @barbers]>
+<table id="barbers" style="text-align:center">
+	<tbody>
+		<tr><th colspan="4">Barbers
+		
+		<[foreach barbers npc]>
+			<[if !npc.row]><tr><[endif]><td><a href="npc<[php]>?npc=<[npc.npcid]>"><[if npc.image]><img src="<[npc.image]>">
+			<br><[endif]>#<[npc.npcid]> <[npc.name]></a>
+		
+		
+		<[endforeach]>
+</table>
+<[endif]>
+
+<[if @guilds]>
+<table id="guilds" style="text-align:center">
+	<tbody>
+		<tr><th colspan="4">Guild Masters
+		
+		<[foreach guilds npc]>
+			<[if !npc.row]><tr><[endif]><td><a href="npc<[php]>?npc=<[npc.npcid]>"><[if npc.image]><img src="<[npc.image]>">
+			<br><[endif]>#<[npc.npcid]> <[npc.name]></a>
+		
+		
+		<[endforeach]>
+</table>
+<[endif]>
+
+<[if @priests]>
+<table id="priests" style="text-align:center">
+	<tbody>
+		<tr><th colspan="4">Priests
+		
+		<[foreach priests npc]>
+			<[if !npc.row]><tr><[endif]><td><a href="npc<[php]>?npc=<[npc.npcid]>"><[if npc.image]><img src="<[npc.image]>">
+			<br><[endif]>#<[npc.npcid]> <[npc.name]></a>
+		
+		
+		<[endforeach]>
+</table>
+<[endif]>
+
+<[if @lawyers]>
+<table id="lawyers" style="text-align:center">
+	<tbody>
+		<tr><th colspan="4">Lawyers
+		
+		<[foreach lawyers npc]>
+			<[if !npc.row]><tr><[endif]><td><a href="npc<[php]>?npc=<[npc.npcid]>"><[if npc.image]><img src="<[npc.image]>">
+			<br><[endif]>#<[npc.npcid]> <[npc.name]></a>
+		
+		
+		<[endforeach]>
+</table>
+<[endif]>
+
+<[if @trainers]>
+<table id="trainers" style="text-align:center">
+	<tbody>
+		<tr><th colspan="4">Skill Masters
+		
+		<[foreach trainers npc]>
+			<[if !npc.row]><tr><[endif]><td><a href="npc<[php]>?npc=<[npc.npcid]>"><[if npc.image]><img src="<[npc.image]>">
+			<br><[endif]>#<[npc.npcid]> <[npc.name]></a>
+		
+		
+		<[endforeach]>
+</table>
+<[endif]>
+
+<[if @quests]>
+<table id="quests" style="text-align:center">
+	<tbody>
+		<tr><th colspan="4">Quest NPCs
+		
+		<[foreach quests npc]>
+			<[if !npc.row]><tr><[endif]><td><a href="npc<[php]>?npc=<[npc.npcid]>"><[if npc.image]><img src="<[npc.image]>">
+			<br><[endif]>#<[npc.npcid]> <[npc.name]></a>
+		
+		
+		<[endforeach]>
+</table>
+<[endif]>
+
+<[if @friendlies]>
+<table id="friendlies" style="text-align:center">
+	<tbody>
+		<tr><th colspan="4">Friendly NPCs
+		
+		<[foreach friendlies npc]>
+			<[if !npc.row]><tr><[endif]><td><a href="npc<[php]>?npc=<[npc.npcid]>"><[if npc.image]><img src="<[npc.image]>">
+			<br><[endif]>#<[npc.npcid]> <[npc.name]></a>
+		
+		
+		<[endforeach]>
+</table>
+<[endif]>
+

@@ -1,0 +1,130 @@
+<table id="item" style="text-align:center">
+	<tr><th colspan="2"><font size=3"><[item.name]></font>
+	<[if item.image]><tr><td><img src="<[item.image]>"><[endif]>
+	<tr><td><b>Item ID: </b><a>#<[item.id]></a>
+	<tr><td><b>Item Type: <[item.desc]></b>
+	<[if item.transform]><tr><th>Skin Transform: <a><[item.skin]><[endif]>
+	<[if item.teleport]><tr><th>Teleport: <a href="map.php?map=<[item.spec1]>">#<[item.spec1]> <[item.mapname]></a><[endif]>
+</table>
+
+<[if equipment]>
+<table id="item-stats" style="text-align:center">
+	<tbody>
+		<tr><th colspan="6">Statistic Bonuses
+		<tr><th>Hit Points<td><[item.hp]><th>Tech Points<td><[item.tp]><th>Damage<td><[item.mindam]> - <[item.maxdam]>
+		<tr><th>Strength<td><[item.str]><th>Intelligence<td><[item.intl]><th>Accuracy<td><[item.accuracy]>
+		<tr><th>Wisdom<td><[item.wis]><th>Agility<td><[item.agi]><th>Armor<td><[item.armor]>
+		<tr><th>Constitution<td><[item.con]><th>Charisma<td><[item.cha]><th>Evade<td><[item.evade]>
+		<tr><th>Return Damage<td><[item.rdam]><th>Range<td><[item.att_range]><th>Weight<td><[item.weight]>
+</table>
+
+<[if item.haselement]>
+<table id="item-element" style="text-align:center">
+	<tbody>
+		<tr><th colspan="4">Element Bonuses
+		<tr><th>Element Attack<td><[item.element]><th>Element Power<td><[item.element_power]>
+		<tr><th>Light Resist<td><[item.light]><th>Dark Resist<td><[item.dark]>
+		<tr><th>Earth Resist<td><[item.earth]><th>Air Resist<td><[item.air]>
+		<tr><th>Water Resist<td><[item.water]><th>Fire Resist<td><[item.fire]>
+</table>
+<[endif]>
+<[endif]>
+
+<[if item.hasreq]>
+<table id="item-req" style="text-align:center">
+	<thead>
+		<tr><th colspan="4">Requirements
+	<tbody>
+		<tr><th>Level<td><b><[item.levelreq]></b><th>Class<td><b><[item.classreq_name]></b>
+		<tr><th>Strength<td><b><[if item.strreq]<[item.strreq]></b><[endif]><[if !item.strreq]> - <[endif]>
+		<th>Intelligence<td><b><[if item.intreq]><[item.intreq]></b><[endif]><[if !item.intreq]> - <[endif]>
+		<tr><th>Wisdom<td><b><[if item.wisreq]><[item.wisreq]></b><[endif]><[if !item.wisreq]> - <[endif]>
+		<th>Agility<td><b><[if item.agireq]><[item.agireq]></b><[endif]><[if !item.agireq]> - <[endif]>
+		<tr><th>Constitution<td><b><[if item.conreq]><[item.conreq]></b><[endif]><[if !item.conreq]> - <[endif]>
+		<th>Charisma<td><b><[if item.chareq]><[item.chareq]></b><[endif]><[if !item.chareq]> - <[endif]>
+</table>
+<[endif]>
+
+
+<[if @drops]>
+<table id="item-drops" style="text-align:center">
+	<thead>
+		<tr><th colspan="3">Drops
+		<tr><th>NPC<th>Amount<th>Rarity
+	<tbody>
+<[foreach drops drop]>
+		<[if drop.amount]>
+		<tr><td><a href="npc.php?npc=<[drop.npcid]>"><[if drop.image]><img src="<[drop.image]>"><br><[endif]>#<[drop.npcid]> <[drop.npc]></a>
+		<td><b><[drop.amount]></b>
+		<td><b><[drop.pct]></b>
+		<[endif]>
+<[endforeach]>
+</table>
+<[endif]>
+
+<[if @shops]>
+<table id="item-shops" style="text-align:center">
+	<thead>
+		<tr><th colspan="3">Shops
+		<tr><th>NPC<th>Shop<th>Price
+	<tbody>
+<[foreach shops shop]>
+		<tr><td><a href="npc.php?npc=<[shop.npcid]>"><[if shop.image]><img src="<[shop.image]>"><br><[endif]>#<[shop.npcid]> <[shop.npc]></a>
+		<td><a href="shop.php?shop=<[shop.shopid]>"><[shop.name]></a>
+		<td><[if shop.sell]><b>Buy:</b> <a><[shop.sell]>g</a><br><[endif]><[if shop.buy]><b>Sell:</b> <a><[shop.buy]>g</a><[endif]>
+
+<[endforeach]>
+</table>
+<[endif]>
+
+<[if @crafts]>
+<table id="item-craft" style="text-align:center">
+	<thead>
+		<tr><th colspan="3">Crafting
+		<tr><th>NPC<th>Shop<th>Ingredients
+	<tbody>
+<[foreach crafts craft]>
+		<tr><td><a href="npc.php?npc=<[craft.npcid]>"><[if craft.image]><img src="<[craft.image]>"><br><[endif]>#<[craft.npcid]> <[craft.npc]></a>
+		<td><a href="shop.php?shop=<[craft.shopid]>"><[craft.name]></a>
+		<td><[foreach craft.ingredients ing]>
+<a href="item.php?item=<[ing.itemid]>"><[ing.item]></a><b>: <[ing.amount]></b><br>
+		<[endforeach]>
+<[endforeach]>
+</table>
+<[endif]>
+
+<[if @quests]>
+<table id="item-quests" style="text-align:center">
+	<thead>
+		<tr><th colspan="3">Quests
+		<tr><th>Image<th>Quest<th>Amount
+		<[foreach quests quest]>
+		<tr>
+		<td><a href="npc.php?npc=<[quest.npcid]>"><[if quest.image]><img src="<[quest.image]>"><br><[endif]>#<[quest.npcid]> <[quest.npcname]></a>
+		<td><a href="quest.php?quest=<[quest.questid]>"><[quest.questname]></a>
+		<td><b><[quest.questamount]></b>
+		<[endforeach]>
+	<tbody>
+</table>
+<[endif]>
+
+<[if @maps]>
+<table id="item-maps" style="text-align:center">
+	<thead>
+		<tr><th colspan="3">Map Chest Spawns
+		<tr><th>Map<th>Key<th>Spawntime
+		<[foreach maps map]>
+		<tr>
+		<td><a href="map.php?map=<[map.mapid]>">#<[map.mapid]> <[map.name]></a>
+		<td><[if map.keyid]><a href="item.php?item=<[map.keyid]>"><[if map.keyimage]><img src="<[map.keyimage]>"><[map.br]><[endif]><[map.keyid]><[map.keyname]></a><[endif]><[if !map.keyid]><b>None</b><[endif]>
+		<td><b><[map.spawntime]>
+		<[endforeach]>
+	<tbody>
+</table>
+<[endif]>
+<[if !founditem]>
+<table id="item-notfound" style="text-align:center">
+	<thead>
+		<tr><th colspan="3">Unavailble Item
+</table>
+<[endif]>
