@@ -8,3 +8,5 @@
  Images can be shown for items, NPCs, and spells follwing the instructions given in the image directories.
  
  It is recommended if replacing your original WebCP that you make a backup of it and install this project into a clean directory rather than overwriting the existing one. 
+ 
+ Credits: Julian Smythe (original author), Richard Leek (Bug fix: map name), Arnound van der Horst (Endless Online author- data read assistance and granted icon public use permissions).
