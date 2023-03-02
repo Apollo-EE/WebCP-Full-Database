@@ -1,51 +1,34 @@
 <?php
 
-$pagetitle = 'News Headlines';
+$pagetitle = 'Home';
 
 require 'common.php';
 
-$count = webcp_db_fetchall('SELECT COUNT(1) as count FROM news');
-$count = $count[0]['count'];
+$accounts = webcp_db_fetchall('SELECT COUNT(1) as count FROM accounts');
+$accounts = $accounts[0]['count'];
 
-if ($count == 0)
-{
-	$tpl->message = "There are currently no news headlines.";
- 	$tpl->Execute(null);
- 	exit;
-}
+$characters = webcp_db_fetchall('SELECT COUNT(1) as count FROM characters');
+$characters = $characters[0]['count'];
 
-$page = isset($_GET['page']) ? $_GET['page'] : 1;
-$pages = ceil($count / $perpage);
+$staffcharacters = webcp_db_fetchall('SELECT COUNT(1) as count FROM characters WHERE admin > 0');
+$staffcharacters = $staffcharacters[0]['count'];
 
-if ($page < 1 || $page > $pages)
-{
-	$page = max(min($page, $pages), 1);
-}
+$onlinecharacters = 0;
 
-$start = ($page-1) * $perpage;
+$guilds = webcp_db_fetchall('SELECT COUNT(1) as count FROM guilds');
+$guilds = $guilds[0]['count'];
 
-$news = webcp_db_fetchall("SELECT title, body, time FROM news ORDER BY time DESC LIMIT ?,?", $start, $perpage);
-foreach ($news as &$new)
-{
-	$new['postdate'] = date('F j, Y', $new['time']);
-}
+$bank = webcp_db_fetchall('SELECT SUM(goldbank) as gold FROM characters');
+$bank = $bank[0]['gold'];
 
-if (empty($news))
-{
-	$tpl->messages = "There are currently no news headlines.";
-	$tpl->Execute(null);
-	exit;
-}
-$pagination = generate_pagination($pages, $page);
-$tpl->page = $page;
-$tpl->pages = $pages;
-$tpl->pagination = $pagination;
-$tpl->perpage = $perpage;
-$tpl->showing = count($news);
-$tpl->start = $start+1;
-$tpl->end = min($start+$perpage, $count);
-$tpl->count = $count;
+$play = webcp_db_fetchall("SELECT SUM(`usage`) as count FROM characters");
+$play = ($play[0]['count']/60);
 
-$tpl->news = $news;
+$tpl->accounts = number_format($accounts);
+$tpl->characters = number_format($characters);
+$tpl->staffcharacters = number_format($staffcharacters);
+$tpl->guilds = number_format($guilds);
+$tpl->bank = number_format($bank);
+$tpl->play = number_format($play);
 
 $tpl->Execute('index');
