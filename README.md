@@ -9,6 +9,6 @@
  
  It is recommended if replacing your original WebCP that you make a backup of it and install this project into a clean directory rather than overwriting the existing one. 
  
- Credits: Julian Smythe (original author), Richard Leek (Bug fix: map name), Arnound van der Horst (Endless Online author- data read assistance and granted icon public use permissions).
+ Credits: Julian Smythe (original author), Richard Leek (Bug fix: map name), Arnoud van der Horst (Endless Online author- data read assistance and granted icon public use permissions).
  
  
