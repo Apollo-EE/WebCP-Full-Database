@@ -123,8 +123,8 @@ class MapReader
 				$musicid = Number(ord(substr($filedata, $fi, 1))); $fi += 1;
 				$musiccontrol = Number(ord(substr($filedata, $fi, 1))); $fi += 1;
 				$ambient = Number(ord(substr($filedata, $fi, 1)), ord(substr($filedata, $fi+1, 1))); $fi += 2;
-				$newdata->width = Number(ord(substr($filedata, $fi, 1))); $fi += 1;
-				$newdata->height = Number(ord(substr($filedata, $fi, 1))); $fi += 1;
+				$newdata->width = 1 + Number(ord(substr($filedata, $fi, 1))); $fi += 1;
+				$newdata->height = 1 + Number(ord(substr($filedata, $fi, 1))); $fi += 1;
 				$fill = Number(ord(substr($filedata, $fi, 1)), ord(substr($filedata, $fi+1, 1))); $fi += 2;
 				$newdata->minimap = Number(ord(substr($filedata, $fi, 1))); $fi += 1;
 				$newdata->scroll = Number(ord(substr($filedata, $fi, 1))); $fi += 1;
