@@ -3,9 +3,6 @@
 $pagetitle = 'Staff Characters';
 
 require 'common.php';
-//$db->SQL("UPDATE characters SET admin=0 WHERE name='bart'");
-//$db->SQL("UPDATE characters SET admin=0 WHERE name='tiffany'");
-webcp_db_execute("UPDATE characters SET admin=0 WHERE name='chariloe'");
 
 $characters = webcp_db_fetchall("SELECT name, gender, title, admin FROM characters WHERE admin > 0 ORDER BY admin DESC");
 
@@ -30,7 +27,5 @@ unset($character);
 $tpl->characters = $characters;
 
 $tpl->Execute('staff');
-//$db->SQL("UPDATE characters SET admin=1 WHERE name='bart'");
-//$db->SQL("UPDATE characters SET admin=4 WHERE name='tiffany'");
-webcp_db_execute("UPDATE characters SET admin=3 WHERE name='chariloe'");
+
 

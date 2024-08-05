@@ -5,6 +5,8 @@ $pagetitle = 'Quest Database';
 $NEEDPUB = true;
 require 'common.php';
 
+$_GET['quest'] = preg_replace("/[^0-9]/", "", $_GET['quest'] );
+
 if (!isset($_GET['quest']))
 {
 	$tpl->message = 'No quest ID specified.';

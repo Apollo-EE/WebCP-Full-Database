@@ -4,6 +4,7 @@ $pagetitle = 'Account';
 
 require 'common.php';
 
+$_GET['name'] = substr($_GET['name'], 0, 16);
 
 if (!$logged)
 {

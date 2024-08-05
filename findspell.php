@@ -9,6 +9,8 @@ if (isset($_GET['spellid']))
 $NEEDPUB = true;
 require 'common.php';
 
+$_GET['spellid'] = preg_replace("/[^0-9]/", "", $_GET['spellid'] );
+
 if (!$GM)
 {
 	$tpl->message = 'You must be a Game Master to view this page.';

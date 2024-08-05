@@ -4,6 +4,9 @@ $pagetitle = 'Guild';
 
 require 'common.php';
 
+$_GET['tag'] = preg_replace("/[^a-zA-Z]/", "", $_GET['tag'] );
+$_GET['tag'] = substr($_GET['tag'], 0, 3);
+
 if (empty($_GET['tag']))
 {
 	$tpl->message = 'No guild tag specified.';

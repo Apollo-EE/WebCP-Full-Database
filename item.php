@@ -5,6 +5,8 @@ $pagetitle = 'Item Database';
 $NEEDPUB = true;
 require 'common.php';
 
+$_GET['item'] = preg_replace("/[^0-9]/", "", $_GET['item'] );
+
 if (!isset($_GET['item']))
 {
 	$tpl->message = 'No item ID specified.';

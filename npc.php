@@ -5,6 +5,8 @@ $pagetitle = 'NPC Database';
 $NEEDPUB = true;
 require 'common.php';
 
+$_GET['npc'] = preg_replace("/[^0-9]/", "", $_GET['npc'] );
+
 if (!isset($_GET['npc']))
 {
 	$tpl->message = 'No npc ID specified.';

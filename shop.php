@@ -5,6 +5,8 @@ $pagetitle = 'Shop Database';
 $NEEDPUB = true;
 require 'common.php';
 
+$_GET['shop'] = preg_replace("/[^0-9]/", "", $_GET['shop'] );
+
 if (!isset($_GET['shop']))
 {
 	$tpl->message = 'No shop ID specified.';

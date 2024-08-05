@@ -5,6 +5,8 @@ $pagetitle = 'Inn Database';
 $NEEDPUB = true;
 require 'common.php';
 
+$_GET['inn'] = preg_replace("/[^0-9]/", "", $_GET['inn'] );
+
 if (!isset($_GET['inn']))
 {
 	$tpl->message = 'No inn ID specified.';

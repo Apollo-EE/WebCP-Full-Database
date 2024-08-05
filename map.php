@@ -5,6 +5,9 @@ $pagetitle = 'Map Database';
 $NEEDPUB = true;
 require 'common.php';
 
+$_GET['map'] = preg_replace("/[^a-zA-Z0-9]/", "", $_GET['map'] );
+$_GET['map'] = substr($_GET['map'], 0, 24);
+
 if (!isset($_GET['map']))
 {
 	$tpl->message = 'No map ID specified.';

@@ -5,6 +5,8 @@ $pagetitle = 'Spell Database';
 $NEEDPUB = true;
 require 'common.php';
 
+$_GET['spell'] = preg_replace("/[^0-9]/", "", $_GET['spell'] );
+
 if (!isset($_GET['spell']))
 {
 	$tpl->message = 'No spell ID specified.';

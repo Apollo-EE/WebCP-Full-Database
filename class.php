@@ -5,6 +5,8 @@ $pagetitle = 'Class Database';
 $NEEDPUB = true;
 require 'common.php';
 
+$_GET['class'] = preg_replace("/[^0-9]/", "", $_GET['class'] );
+
 if (!isset($_GET['class']))
 {
 	$tpl->message = 'No class ID specified.';

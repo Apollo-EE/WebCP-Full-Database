@@ -5,6 +5,9 @@ $pagetitle = 'Character';
 $NEEDPUB = true;
 require 'common.php';
 
+$_GET['name'] = preg_replace("/[^a-zA-Z]/", "", $_GET['name'] );
+$_GET['name'] = substr($_GET['name'], 0, 12);
+
 if (!$logged)
 {
 	$tpl->message = 'You must be logged in to view this page.';

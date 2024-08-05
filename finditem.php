@@ -6,6 +6,9 @@ if (isset($_GET['itemid']))
 {
 	$checkcsrf = true;
 }
+
+$_GET['itemid'] = preg_replace("/[^0-9]/", "", $_GET['itemid'] );
+
 $NEEDPUB = true;
 require 'common.php';
 
