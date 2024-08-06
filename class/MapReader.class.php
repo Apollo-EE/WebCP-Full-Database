@@ -228,8 +228,11 @@ class MapReader
 					$signx = Number(ord(substr($filedata, $fi, 1))); $fi += 1;
 					$signy = Number(ord(substr($filedata, $fi, 1))); $fi += 1;
 					$signlength =Number(ord(substr($filedata, $fi, 1)), ord(substr($filedata, $fi+1, 1))); $fi += 2;
-					$message = substr($filedata, $fi, $namelen); $fi += $namelen;
-					$titlelength = Number(ord(substr($filedata, $fi, 1))); $fi += 1;
+					$textdata = substr($filedata, $fi, $signlength - 1); $fi += ($signlength - 1);	
+					$titlelength = Number(ord(substr($filedata, $fi, 1))); $fi += 1;	
+					$text = DecodeEMF($textdata);
+					$title = substr($text, 0, $titlelength);
+					$message = substr($text, $titlelength);
 				}
 				
 				array_push($this->data, $newdata);					
