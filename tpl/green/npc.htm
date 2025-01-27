@@ -72,7 +72,7 @@
 		<tr><th>Item<th>Price
 	<tbody>
 <[foreach shops shop]>
-		<tr><td><a href="item.php?item=<[shop.itemid]>"><[if shop.image]><img src="<[shop.image]>"><br><[endif]>#<shop.itemid]> <[shop.item]><a>
+		<tr><td><a href="item.php?item=<[shop.itemid]>"><[if shop.image]><img src="<[shop.image]>"><br><[endif]>#<[shop.itemid]> <[shop.item]><a>
 		<td><[if shop.sell]><b>Buy: </b><a><[shop.sell]>g</a><br><[endif]><[if shop.buy]><b>Sell:</b> <a><[shop.buy]>g</a><[endif]>
 
 <[endforeach]>
