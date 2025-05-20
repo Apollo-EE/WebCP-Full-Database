@@ -152,7 +152,7 @@ class QuestReader
 					
 					$countkarmal = preg_match_all('/removekarma\((.*?)\)/i', $questdataslim, $karmal);
 
-					for ($j = 0; $j < $countkarmag; ++$j)
+					for ($j = 0; $j < $countkarmal; ++$j)
 					{
 						$newkarmal = new karmataken;
 						$newkarmal->amount = $karmal[1][$j];
